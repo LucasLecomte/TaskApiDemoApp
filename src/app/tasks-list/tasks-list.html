@@ -1,0 +1,50 @@
+<mat-divider></mat-divider>
+
+<mat-card class="task-card">
+    <span class="task-card-title">
+        <h2>Liste des tâches</h2>
+        <mat-button-toggle-group class="filter-buttons" name="filters" (change)="filter = $event.value" value="all">
+            <mat-button-toggle value="all">Toutes</mat-button-toggle>
+            <mat-button-toggle value="completed">Complétées</mat-button-toggle>
+            <mat-button-toggle value="incomplete">Non complétées</mat-button-toggle>
+        </mat-button-toggle-group>
+    </span>
+    <mat-divider></mat-divider>
+    <mat-list *ngIf="tasks$ | async as tasks; else loading">
+        <mat-list-item *ngFor="let task of (tasks$ | async | taskFilter:filter)">
+            <span class="task-list">
+                <span class="check-label-description">
+                    <mat-icon class="task-completion-status-icon" matListItemIcon (click)="toggleStatus(task)">
+                        {{ task.completed ? 'check_circle' : 'radio_button_unchecked' }}
+                    </mat-icon>
+                    <span class="label-description">
+                        <span class="task-label" matListItemTitle [routerLink]="['/task', task.id]">
+                            {{ task.label }}
+                        </span>
+                        <span class="task-description" matListItemLine [routerLink]="['/task', task.id]">
+                            {{ task.description }}
+                        </span>
+                    </span>
+                </span>
+                <span>
+                    <a mat-icon-button matListItemMeta [routerLink]="['/task', task.id]">
+                        <mat-icon class="chevron-icon">chevron_right</mat-icon>
+                    </a>
+                </span>
+            </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item class="add-task-item">
+            <span class="add-task-button">
+                <button mat-raised-button>
+                    <mat-icon class="add-circle-icon" (click)="openAddStepDialog()">add_circle</mat-icon>
+                </button>
+            </span>
+        </mat-list-item>
+    </mat-list>
+</mat-card>
+
+<ng-template #loading>
+    <p>Loading tasks...</p>
+</ng-template>
