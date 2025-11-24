@@ -1,0 +1,14 @@
+.add-step-field {
+    width: 100%;
+}
+
+.add-step-form {
+    margin: 10px;
+}
+
+.actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}

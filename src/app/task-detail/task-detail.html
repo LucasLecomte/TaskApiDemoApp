@@ -1,0 +1,21 @@
+<mat-card class="detail-card" *ngIf="task$ | async as task">
+    <h2>Détail : {{ task.label }}</h2>
+    <mat-divider></mat-divider>
+
+    <p><strong>Description :</strong> {{ task.description }}</p>
+
+    <p class="status-display">
+        <strong>Statut :</strong>
+        <mat-icon>
+            {{ task.completed ? 'check_circle' : 'highlight_off' }}
+        </mat-icon>
+    </p>
+
+    <button mat-raised-button (click)="toggleStatus(task)">
+        {{ task.completed ? 'Marquer comme non terminé' : 'Marquer comme terminé' }}
+    </button>
+</mat-card>
+
+<ng-template #loading>
+    <p>Loading task...</p>
+</ng-template>

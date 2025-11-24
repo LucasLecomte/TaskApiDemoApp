@@ -1,0 +1,18 @@
+<span class="add-step-form">
+    <h2>Nouvelle étape</h2>
+
+    <mat-form-field appearance="outline" class="add-step-field">
+        <mat-label>Nom de l’étape</mat-label>
+        <input matInput [(ngModel)]="label">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="add-step-field">
+        <mat-label>Description</mat-label>
+        <textarea matInput rows="4" [(ngModel)]="description"></textarea>
+    </mat-form-field>
+
+    <div class="actions">
+        <button mat-button (click)="cancel()">Annuler</button>
+        <button mat-raised-button (click)="save()">Ajouter</button>
+    </div>
+</span>
