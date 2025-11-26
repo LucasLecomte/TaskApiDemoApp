@@ -33,7 +33,7 @@ test.describe('Task Manager E2E (REAL backend)', () => {
 
         await page.locator('mat-button-toggle[value="completed"]').click();
         const completedCount = await page.locator('.task-label').count();
-        expect(completedCount).toBeGreaterThanOrEqual(0); // peut être 0 si aucune n'est complétée
+        expect(completedCount).toBeGreaterThanOrEqual(0); // can be 0 if no task is completed
 
         await page.locator('mat-button-toggle[value="incomplete"]').click();
         const incompleteCount = await page.locator('.task-label').count();
